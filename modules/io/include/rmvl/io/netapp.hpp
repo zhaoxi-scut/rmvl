@@ -611,9 +611,10 @@ public:
     /**
      * @brief 启动 Socket 监听任务循环
      *
+     * @param[in] onsigint 是否启用 SIGINT 信号处理，默认启用
      * @return rm::async::Task<> 异步任务
      */
-    [[nodiscard]] Task<> spin();
+    [[nodiscard]] Task<> spin(bool onsigint = true);
 
     //! 是否正在运行
     [[nodiscard]] bool running() const noexcept { return _running.load(std::memory_order_acquire); }

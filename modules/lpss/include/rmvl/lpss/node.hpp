@@ -353,7 +353,10 @@ private:
     //! 处理 SIGINT 信号
     rm::async::Task<> on_sigint();
 
-    rm::async::IOContext _ctx{};             //!< 异步 IO 上下文
+protected:
+    rm::async::IOContext _ctx{}; //!< 异步 IO 上下文
+
+private:
     rm::async::Timer _broadcast_timer{_ctx}; //!< NDP 广播异步定时器
     rm::async::Timer _hbt_timer{_ctx};       //!< 心跳检测异步定时器
 

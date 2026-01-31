@@ -828,8 +828,9 @@ Task<> Webapp::handle_client(StreamSocket socket) {
         printf("Failed to send response\n");
 }
 
-Task<> Webapp::spin() {
-    co_spawn(_ctx, &Webapp::on_sigint, this);
+Task<> Webapp::spin(bool onsigint) {
+    if (onsigint)
+        co_spawn(_ctx, &Webapp::on_sigint, this);
 
     auto acceptor = async::Acceptor(_ctx, Endpoint(ip::tcp::v4(), _port));
     // execute listen callback
